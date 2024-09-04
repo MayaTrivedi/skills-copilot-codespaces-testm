@@ -35,3 +35,19 @@ app.delete('/products/:id', (req, res) => {
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
+
+// create html form with a text box and button to submit the form
+app.get('/form', (req, res) => {
+    res.send(`
+        <form action="/submit" method="post">
+            <input type="text" name="product" placeholder="Enter product name">
+            <button type="submit">Submit</button>
+        </form>
+    `);
+});
+
+app.post('/submit', (req, res) => {
+    const productName = req.body.product;
+    // Logic to handle form submission
+    res.send(`Submitted product: ${productName}`);
+});
